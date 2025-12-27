@@ -53,12 +53,12 @@ def get_tasks():
     with pyodbc.connect(connection_string) as conn:
         cursor = conn.cursor()
         cursor.execute("SELECT * FROM Tasks")
-        for row in cursor.fetchall():
-            task = {
-                "ID": row.ID,
-                "Title": row.Title,
-                "Description": row.Description
-            }
+for row in cursor.fetchall():
+            tasks.append({
+                "ID": row[0],
+                "Title": row[1],
+                "Description": row[2]
+            })
             tasks.append(task)
     return tasks
 
